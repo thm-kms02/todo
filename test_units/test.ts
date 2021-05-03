@@ -27,14 +27,14 @@ describe('Post /create',()=>{
 
 describe('Post /login',()=>{
     it('should login a user',  (done)=> {
-        const account = {
+        const login = {
             email:"dieter@web.de",
             passwort: "passwefrg"
 
         };
         chain.request('http://localhost:8080')
             .post('/login')
-            .send(account)
+            .send(login)
             .end((err,response)=>{
                 response.should.have.status(500);
                 done();
