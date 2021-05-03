@@ -90,7 +90,7 @@ describe('Post /addCategory',()=>{
             .post('/addCategory')
             .send(Category)
             .end((err,response)=>{
-                response.should.have.status(200);
+                response.should.have.status(400);
                 done();
             });
     });
@@ -121,7 +121,7 @@ describe('Post /addTask',()=>{
             .post('/addTask')
             .send(Task)
             .end((err,response)=>{
-                response.should.have.status(200);
+                response.should.have.status(400);
                 done();
             });
     });
