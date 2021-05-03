@@ -20,6 +20,7 @@ var createButton;
 var categoryInp;
 var categoryBtn;
 var openModReg;
+var openModLog;
 $(function () {
     saveButton = $("#saveTask");
     saveButton.on('click', addTask);
@@ -29,6 +30,9 @@ $(function () {
     categoryBtn.on('click', addCategory);
     openModReg = $('#registyMod');
     openModReg.on('click', openModal);
+    openModLog=$('#logine');
+    openModLog.on('click',openLogin);
+
 });
 function addCategory() {
     categoryInp = $("#CategoryInput");
@@ -98,6 +102,27 @@ function create() {
         alert(jqXHR.responseText);
     });
 }
+
+function login() {
+    var email = $("#email").val().toString().trim();
+    var passwort = $("#password").val().toString().trim();
+    event.preventDefault();
+    $.ajax('http://localhost:8080/login', {
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            email: email,
+            password: password
+        }),
+    }).then(function () {
+        var Modal = $('#Login');
+        Modal.modal("hide");
+        alert("erfolgreich eingellogt");
+    }).catch(function (jqXHR) {
+        alert(jqXHR.responseText);
+    });
+}
+
 function getTodolist() {
     //ajax request for data
     $.ajax({
@@ -133,4 +158,8 @@ function renderTodolist(todoList) {
 function openModal() {
     var editModal = $('#modalLogin');
     editModal.modal('show');
+}
+function openLogin() {
+    var Modal = $('#Login');
+    Modal.modal('show');
 }

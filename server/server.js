@@ -133,3 +133,31 @@ app.post('/create', function (req, res) {
         });
     }
 });
+
+app.post('/login', function (req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    var data = [email];
+    console.log(email);
+    if (email === "" ||  password == "") {
+        res.status(400);
+        res.send("Alle Inputfelder müssen ausgefüllt werden");
+    }
+    else {
+        var cQuery = 'SELECT * FROM nutzer WHERE email=? And password=?';
+        database.query(cQuery, data, function (err, results) {
+            if (err === null && results.length > 0  ) {
+                res.status(201);
+                res.send(" Nutzer erfolgreich  eingellogt");
+            }
+            else if (err.errno == 1062) {
+                res.status(500);
+                res.send("Nutzer ist nicht vorhanden.");
+            }
+            else {
+                res.sendStatus(500);
+            }
+        });
+    }
+});
+
