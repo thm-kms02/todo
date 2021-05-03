@@ -25,7 +25,22 @@ describe('Post /create',()=>{
     });
 });
 
+describe('Post /login',()=>{
+    it('should login a user',  (done)=> {
+        const account = {
+            email:"dieter@web.de",
+            passwort: "passwefrg"
 
+        };
+        chain.request('http://localhost:8080')
+            .post('/login')
+            .send(account)
+            .end((err,response)=>{
+                response.should.have.status(500);
+                done();
+            });
+    });
+});
 
 
 describe('Post /addCategory',()=>{
