@@ -119,7 +119,7 @@ function create(){
 function getTodolist() {
     //ajax request for data
     $.ajax({
-        url:'todoliste',
+        url:'loadTasks',
         type:'get',
         dataType:'json',
         success:(response)=>{
