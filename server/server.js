@@ -137,7 +137,7 @@ app.post('/create', function (req, res) {
 app.post('/login', function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
-    var data = [email];
+    var data = [email, password];
     console.log(email);
     if (email === "" ||  password == "") {
         res.status(400);
