@@ -6,7 +6,6 @@ export class Aufgabe {
     kategorie: number;
     prio: number;
 
-
     constructor(user: number, ueberschrift: string, beschreibung: string, kategorie?: number, prio?: number, id?: number) {
         this.user = user;
         this.ueberschrift = ueberschrift;
@@ -15,7 +14,8 @@ export class Aufgabe {
         this.prio = 1;
         this.id = id;
     }
-    public toArray():[number, string, string, number, number] {
-        return [this.user, this.ueberschrift, this.beschreibung,this.kategorie, this.prio];
+
+    public toArray(): [number, string, string, number, number] {
+        return [this.user, this.ueberschrift, this.beschreibung, this.kategorie, this.prio];
     }
 }
