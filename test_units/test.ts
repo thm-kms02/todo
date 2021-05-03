@@ -1,6 +1,6 @@
-import chain = require('chai');
-import chaiHttps= require('chai-http');
-
+const chain = require('chai');
+const chaiHttps= require('chai-http');
+const host = require('../server/server');
 
 chain.should();
 chain.use(chaiHttps);
@@ -36,6 +36,26 @@ describe('Post /login',()=>{
             .end((err,response)=>{
                 response.should.have.status(500);
                 done();
+            });
+    });
+});
+//If alternative zum Login
+describe('Post /login',()=>{
+    it('should login a user',  (done)=> {
+        const login = {
+            email:"dieter@web.de",
+            passwort: "passwefrg"
+
+        };
+        chain.request('http://localhost:8080')
+            .post('/login')
+            .send(login)
+            .end((err,response)=>{
+                if(response.status=== 500){
+                    done()
+                }else{
+                    console.log(err);
+                }
             });
     });
 });
