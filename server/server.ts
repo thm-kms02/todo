@@ -34,25 +34,38 @@ database.connect((err: MysqlError) => {
 
 app.post('/addCategory', (req: Request, res: Response) => {
     let cat: string = req.body.newCat;
-    let data: [number, string] = [loggeduser.id, cat];
-    let query: string = 'INSERT INTO kategorie (nutzer, katName) VALUES (?,?);';
-    database.query(query, data, (err: MysqlError) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send({
-                message: 'Database request failed: ' + err
-            });
-        } else {
-            res.status(200).send({
-                message: 'Category added'
-            });
-        }
-    })
+    cat = cat.trim();
+    if(cat.length<1) {
+        res.status(400).send({
+            message:"Bad Input"
+        });
+    } else {
+        let data: [number, string] = [loggeduser.id, cat];
+        let query: string = 'INSERT INTO kategorie (nutzer, katName) VALUES (?,?);';
+        database.query(query, data, (err: MysqlError) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send({
+                    message: 'Database request failed: ' + err
+                });
+            } else {
+                res.status(200).send({
+                    message: 'Category added'
+                });
+            }
+        });
+
+    }
 });
 
 app.post('/addTask', (req: Request, res: Response) => {
     console.log("Hallo: " + req.body.ueberschrift);
     let task: Aufgabe = new Aufgabe(req.body.ueberschrift, req.body.beschreibung, req.body.category);
+    if(task.ueberschrift.length<1||task.beschreibung.length<1) {
+        res.status(400).send({
+            message:"Bad Input"
+        });
+    }
     let data: [number, string, string, number, number] = task.toArray();
     let query: string = 'INSERT INTO aufgabe (benutzer, ueberschrift, beschreibung, prio, kategorie) VALUES (1, ?, ?, 1, ?);';
     database.query(query, data, (err: MysqlError) => {
@@ -80,13 +93,13 @@ app.get('/loadTasks', (req: Request, res: Response) => {
                 message: 'Database request failed: ' + err
             });
         } else {
-
             res.status(200).send({
                 result: rows
             });
         }
     })
 });
+/*
 
 app.get('/todoliste', (req: Request, res: Response) => {
     let query: string = 'SELECT * FROM aufgabe;';
@@ -119,12 +132,14 @@ app.get('/todoliste', (req: Request, res: Response) => {
     })
 
 });
+*/
 
 app.post('/create', (req: Request, res: Response) => {
     const email: string = req.body.email;
     let vorname: string = req.body.vorname;
     let nachname: string = req.body.nachname;
     const passwort: string = req.body.passwort;
+    console.log(nachname);
     let data = [email, vorname, nachname, passwort];
 
     if (email === "" || vorname === "" || nachname === "" || passwort == "") {
