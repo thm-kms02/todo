@@ -1,6 +1,9 @@
-import chain = require('chai');
-import chaiHttps= require('chai-http');
-
+// tslint:disable-next-line:no-var-requires
+const chain = require('chai');
+// tslint:disable-next-line:no-var-requires
+const chaiHttps= require('chai-http');
+// tslint:disable-next-line:no-var-requires
+const host = require('../server/server');
 
 chain.should();
 chain.use(chaiHttps);
@@ -11,13 +14,27 @@ describe('Post /create',()=>{
             vorname:"Dieter",
             nachname: "Mainder",
             passwort: "passwefrg"
-
         };
         chain.request('http://localhost:8080')
             .post('/create')
             .send(account)
             .end((err,response)=>{
+                console.log(response);
                 response.should.have.status(201);
+                done();
+            });
+    });
+    it('Register without email should fail',  (done)=> {
+        const account = {
+            vorname:"Dieter",
+            nachname: "Mainder",
+            passwort: "passwefrg"
+        };
+        chain.request('http://localhost:8080')
+            .post('/create')
+            .send(account)
+            .end((err,response)=>{
+                response.should.have.status(500);
                 done();
             });
     });
@@ -28,11 +45,22 @@ describe('Post /login',()=>{
         const login = {
             email:"dieter@web.de",
             passwort: "passwefrg"
-
         };
         chain.request('http://localhost:8080')
             .post('/login')
             .send(login)
+            .end((err,response)=>{
+                response.should.have.status(500);
+                done();
+            });
+    });
+    it('Login without password should fail',  (done)=> {
+        const account = {
+            email: "dieter@web.de"
+        };
+        chain.request('http://localhost:8080')
+            .post('/login')
+            .send(account)
             .end((err,response)=>{
                 response.should.have.status(500);
                 done();
@@ -62,7 +90,7 @@ describe('Post /addCategory',()=>{
             .post('/addCategory')
             .send(Category)
             .end((err,response)=>{
-                response.should.have.status(400);
+                response.should.have.status(200);
                 done();
             });
     });
@@ -93,7 +121,7 @@ describe('Post /addTask',()=>{
             .post('/addTask')
             .send(Task)
             .end((err,response)=>{
-                response.should.have.status(400);
+                response.should.have.status(200);
                 done();
             });
     });
