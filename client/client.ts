@@ -43,7 +43,7 @@ $(() => {
 
 function addCategory() {
     categoryInp = $("#CategoryInput");
-    let newCat: string = categoryInp.val().toString().trim();
+    const newCat: string = categoryInp.val().toString().trim();
     categoryInp.val("");
     $.ajax('http://localhost:8080/addCategory', {
         type: 'POST',
@@ -54,7 +54,7 @@ function addCategory() {
         contentType: 'application/json',
         success: result => {
             console.log(result);
-            //getTodolist;
+            // getTodolist;
         },
         error: jqXHR => {
             console.log(jqXHR);
@@ -66,9 +66,9 @@ function addTask() {
     taskText = $("#taskText");
     descriptionInput = $("#descriptionInput");
     selectedCategory = $("#categorySelect");
-    let ueberschrift: string = taskText.val().toString().trim();
-    let beschreibung: string = descriptionInput.val().toString().trim();
-    let category: number = selectedCategory.val() as number;
+    const ueberschrift: string = taskText.val().toString().trim();
+    const beschreibung: string = descriptionInput.val().toString().trim();
+    const category: number = selectedCategory.val() as number;
     $.ajax('http://localhost:8080/addTask', {
         type: 'POST',
         dataType: 'json',
@@ -80,7 +80,7 @@ function addTask() {
         contentType: 'application/json',
         success: result => {
             console.log(result);
-            //getTodolist;
+            // getTodolist;
         },
         error: jqXHR => {
             console.log(jqXHR);
@@ -88,24 +88,24 @@ function addTask() {
     })
 }
 function create(){
-    let vorname:string = $("#vorname").val().toString().trim();
-    let nachname:string = $("#nachname").val().toString().trim();
-    let email = $("#inputEmail4").val().toString().trim();
-    let passwort = $("#inputPassword4").val().toString().trim();
+    const vorname:string = $("#vorname").val().toString().trim();
+    const nachname:string = $("#nachname").val().toString().trim();
+    const email = $("#inputEmail4").val().toString().trim();
+    const passwort = $("#inputPassword4").val().toString().trim();
     event.preventDefault();
 
     $.ajax('http://localhost:8080/create', {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            vorname:vorname,
-            nachname:nachname,
-            email:email,
-            passwort:passwort
+            vorname,
+            nachname,
+            email,
+            passwort
         }),
 
     }).then(() => {
-        let editModal: JQuery = $('#modalLogin');
+        const editModal: JQuery = $('#modalLogin');
         editModal.modal("hide");
         alert("Willkomen, " + vorname);
 
@@ -117,7 +117,7 @@ function create(){
 }
 
 function getTodolist() {
-    //ajax request for data
+    // ajax request for data
     $.ajax({
         url:'loadTasks',
         type:'get',
@@ -128,8 +128,7 @@ function getTodolist() {
             console.log("something went wrong")
         },
 
-    }).then(()=>{});
-
+    });
 }
 
 function renderTodolist(todoList: Aufgabe[]){
@@ -154,7 +153,7 @@ function renderTodolist(todoList: Aufgabe[]){
 }
 
 function openModal(){
-    let editModal: JQuery = $('#modalLogin');
+    const editModal: JQuery = $('#modalLogin');
     editModal.modal('show');
 }
 

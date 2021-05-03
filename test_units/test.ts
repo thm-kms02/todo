@@ -1,8 +1,6 @@
+import chain = require('chai');
+import chaiHttps= require('chai-http');
 
-const chain = require('chai');
-const chaiHttps= require('chai-http');
-const host = require('../server/server');
-//assertion
 
 chain.should();
 chain.use(chaiHttps);
@@ -56,9 +54,6 @@ describe('Post /addCategory',()=>{
                 done();
             });
     });
-});
-
-describe('Post /addCategory',()=>{
     it('should create a new Category',  (done)=> {
         const Category = {
             newCat:""
@@ -88,9 +83,6 @@ describe('Post /addTask',()=>{
                 done();
             });
     });
-});
-
-describe('Post /addTask',()=>{
     it('should create a new Task',  (done)=> {
         const Task = {
             ueberschrift:"",
