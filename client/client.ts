@@ -28,6 +28,7 @@ let createButton:JQuery;
 let categoryInp:JQuery;
 let categoryBtn:JQuery;
 let openModReg: JQuery;
+let openModLog: JQuery;
 
 
 $(() => {
@@ -39,6 +40,8 @@ $(() => {
     categoryBtn.on('click', addCategory);
     openModReg = $('#registyMod');
     openModReg.on('click',openModal);
+    openModLog=$('#logine');
+    openModLog.on('click',openLogin);
 });
 
 function addCategory() {
@@ -154,5 +157,10 @@ function renderTodolist(todoList: Aufgabe[]){
 function openModal(){
     const editModal: JQuery = $('#modalLogin');
     editModal.modal('show');
+}
+
+function openLogin(){
+    const Modal = $('#Login');
+    Modal.modal('show');
 }
 
