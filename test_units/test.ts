@@ -138,3 +138,37 @@ describe('GET /loadTasks',()=>{
     });
 });
 
+describe('GET /loadTasks',()=>{
+    it('should give all Tasks of current user with ID',  (done)=> {
+        const ID ={
+            id:"?",
+        };
+        chain.request('http://localhost:8080')
+            .get('/loadTasks')
+            .send(ID)
+            .end((err,response)=>{
+                response.should.have.status(200);
+                done();
+            });
+    });
+});
+
+describe('Get/todoliste)',()=>{
+    it('should load and create the task on mainpage if logged in',(done) =>{
+        const Todoliste= {
+            id:"",
+            user:"",
+            ueberschrift:"",
+            beschreibung:"",
+            kategorie:"",
+            prio:"",
+        };
+        chain.request('http://localhost:8080')
+            .get('/todoliste')
+            .send(Todoliste)
+            .end((err,response)=>{
+                response.should.have.status(200);
+                done();
+            });
+    });
+});

@@ -103,7 +103,7 @@ app.get('/loadTasks', (req: Request, res: Response) => {
 /*
 
 app.get('/todoliste', (req: Request, res: Response) => {
-    let query: string = 'SELECT * FROM aufgabe;';
+    const query: string = 'SELECT * FROM aufgabe;';
     database.query(query, (err, rows: any) => {
         if (err) {
             //Database failed
