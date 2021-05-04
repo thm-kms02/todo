@@ -127,25 +127,11 @@ describe('Post /addTask',()=>{
     });
 });
 
-describe('GET /loadTasks',()=>{
-    it('should give all Tasks of current user',  (done)=> {
-        chain.request('http://localhost:8080')
-            .get('/loadTasks')
-            .end((err,response)=>{
-                response.should.have.status(200);
-                done();
-            });
-    });
-});
 
 describe('GET /loadTasks',()=>{
     it('should give all Tasks of current user with ID',  (done)=> {
-        const ID ={
-            id:"?",
-        };
         chain.request('http://localhost:8080')
             .get('/loadTasks')
-            .send(ID)
             .end((err,response)=>{
                 response.should.have.status(200);
                 done();
