@@ -5,6 +5,7 @@ import {Request, Response} from 'express';
 import {Aufgabe} from '../aufgabe';
 import {User} from "../User";
 
+module.exports = "http://localhost:8080";
 const app = express();
 const database: Connection = mysql.createConnection({
     host: 'localhost',
@@ -100,7 +101,7 @@ app.get('/loadTasks', (req: Request, res: Response) => {
         }
     })
 });
-/*
+
 
 app.get('/todoliste', (req: Request, res: Response) => {
     const query: string = 'SELECT * FROM aufgabe;';
@@ -133,14 +134,13 @@ app.get('/todoliste', (req: Request, res: Response) => {
     })
 
 });
-*/
+
 
 app.post('/create', (req: Request, res: Response) => {
     const email: string = req.body.email;
     const vorname: string = req.body.vorname;
     const nachname: string = req.body.nachname;
     const passwort: string = req.body.passwort;
-    console.log(nachname);
     const data = [email, vorname, nachname, passwort];
 
     if (email === "" || vorname === "" || nachname === "" || passwort === "") {
@@ -162,4 +162,28 @@ app.post('/create', (req: Request, res: Response) => {
     }
 });
 
-module.exports = "http://localhost:8080";
+app.post('/login', function (req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+    const data = [email, password];
+    if (email === "" ||  password == "") {
+        res.status(400);
+        res.send("Alle Inputfelder müssen ausgefüllt werden");
+    }
+    else {
+        const cQuery = 'SELECT * FROM nutzer WHERE email=? And password=?';
+        database.query(cQuery, data, function (err, results) {
+            if (err === null && results.length > 0  ) {
+                res.status(201);
+                res.send(" Nutzer erfolgreich  eingellogt");
+            }
+            else if (err.errno == 1062) {
+                res.status(500);
+                res.send("Nutzer ist nicht vorhanden.");
+            }
+            else {
+                res.sendStatus(500);
+            }
+        });
+    }
+});

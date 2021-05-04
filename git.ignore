@@ -1,2 +1,4 @@
 /.idea
 /node_modules
+/server/server.js
+/client/client.js

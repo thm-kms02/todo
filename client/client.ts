@@ -117,7 +117,6 @@ function create(){
 }
 
 function getTodolist() {
-    // ajax request for data
     $.ajax({
         url:'loadTasks',
         type:'get',

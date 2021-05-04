@@ -20,7 +20,6 @@ var createButton;
 var categoryInp;
 var categoryBtn;
 var openModReg;
-var openModLog;
 $(function () {
     saveButton = $("#saveTask");
     saveButton.on('click', addTask);
@@ -30,9 +29,6 @@ $(function () {
     categoryBtn.on('click', addCategory);
     openModReg = $('#registyMod');
     openModReg.on('click', openModal);
-    openModLog=$('#logine');
-    openModLog.on('click',openLogin);
-
 });
 function addCategory() {
     categoryInp = $("#CategoryInput");
@@ -47,7 +43,7 @@ function addCategory() {
         contentType: 'application/json',
         success: function (result) {
             console.log(result);
-            //getTodolist;
+            // getTodolist;
         },
         error: function (jqXHR) {
             console.log(jqXHR);
@@ -72,7 +68,7 @@ function addTask() {
         contentType: 'application/json',
         success: function (result) {
             console.log(result);
-            //getTodolist;
+            // getTodolist;
         },
         error: function (jqXHR) {
             console.log(jqXHR);
@@ -102,31 +98,9 @@ function create() {
         alert(jqXHR.responseText);
     });
 }
-
-function login() {
-    var email = $("#email").val().toString().trim();
-    var passwort = $("#password").val().toString().trim();
-    event.preventDefault();
-    $.ajax('http://localhost:8080/login', {
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            email: email,
-            password: password
-        }),
-    }).then(function () {
-        var Modal = $('#Login');
-        Modal.modal("hide");
-        alert("erfolgreich eingellogt");
-    }).catch(function (jqXHR) {
-        alert(jqXHR.responseText);
-    });
-}
-
 function getTodolist() {
-    //ajax request for data
     $.ajax({
-        url: 'todoliste',
+        url: 'loadTasks',
         type: 'get',
         dataType: 'json',
         success: function (response) {
@@ -134,7 +108,7 @@ function getTodolist() {
         }, error: function () {
             console.log("something went wrong");
         },
-    }).then(function () { });
+    });
 }
 function renderTodolist(todoList) {
     var todobody = $('#todobody');
@@ -158,8 +132,4 @@ function renderTodolist(todoList) {
 function openModal() {
     var editModal = $('#modalLogin');
     editModal.modal('show');
-}
-function openLogin() {
-    var Modal = $('#Login');
-    Modal.modal('show');
 }

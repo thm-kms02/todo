@@ -90,7 +90,7 @@ describe('Post /addCategory',()=>{
             .post('/addCategory')
             .send(Category)
             .end((err,response)=>{
-                response.should.not.have.status(400);
+                response.should.have.status(400);
                 done();
             });
     });
@@ -111,17 +111,17 @@ describe('Post /addTask',()=>{
                 done();
             });
     });
-    it('should create a new Task',  (done)=> {
+    it('should not create a new Task',  (done)=> {
         const Task = {
             ueberschrift:"",
             beschreibung:"",
-            category:1
+            category:1,
         };
         chain.request('http://localhost:8080')
             .post('/addTask')
             .send(Task)
             .end((err,response)=>{
-                response.should.not.have.status(400);
+                response.should.have.status(400);
                 done();
             });
     });
