@@ -25,6 +25,7 @@ let saveButton: JQuery;
 let selectedCategory: JQuery;
 let descriptionInput: JQuery;
 let createButton:JQuery;
+let LoginButton:JQuery;
 let categoryInp:JQuery;
 let categoryBtn:JQuery;
 let openModReg: JQuery;
@@ -42,6 +43,8 @@ $(() => {
     openModReg.on('click',openModal);
     openModLog=$('#logine');
     openModLog.on('click',openLogin);
+    LoginButton=$("#createlogin");
+    LoginButton.on('click',login);
 });
 
 function addCategory() {
@@ -111,6 +114,35 @@ function create(){
         const editModal: JQuery = $('#modalLogin');
         editModal.modal("hide");
         alert("Willkomen, " + vorname);
+
+
+    }).catch((jqXHR: JQueryXHR) => {
+        alert(jqXHR.responseText)
+
+    });
+}
+
+
+function login(){
+
+    const email = $("#email").val().toString().trim();
+    const passwort = $("#password").val().toString().trim();
+    event.preventDefault();
+
+    $.ajax('http://localhost:8080/login', {
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+
+            email,
+            passwort
+        }),
+
+    }).then(() => {
+        const editModal: JQuery = $('#Login');
+        editModal.modal("hide");
+        alert("Willkomen");
+        alert("sie sind erfolgreich eingeloggt")
 
 
     }).catch((jqXHR: JQueryXHR) => {
