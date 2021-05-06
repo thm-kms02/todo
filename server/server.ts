@@ -177,6 +177,7 @@ app.post('/login', (req, res) => {
             if (err === null && results.length > 0  ) {
                 res.status(201);
                 res.send(" Nutzer erfolgreich  eingellogt");
+
             }
             else if (err.errno === 1062) {
                 res.status(500);
