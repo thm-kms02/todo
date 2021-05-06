@@ -1,4 +1,4 @@
-import express = require('express');
+const express = require('express');
 import mysql = require('mysql');
 import {Connection, MysqlError} from "mysql";
 import {Request, Response} from 'express';
