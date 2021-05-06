@@ -188,4 +188,3 @@ app.post('/login', (req, res) => {
         });
     }
 });
-module.exports = "http://localhost:8080";
