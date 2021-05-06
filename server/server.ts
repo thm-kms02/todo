@@ -5,7 +5,6 @@ import {Request, Response} from 'express';
 import {Aufgabe} from '../aufgabe';
 import {User} from "../User";
 
-
 const app = express();
 const database: Connection = mysql.createConnection({
     host: 'localhost',
