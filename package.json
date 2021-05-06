@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "test": "nyc mocha ./test_units/test.js"
+    "test": "nyc mocha ./test_units/test.ts"
   },
   "repository": {
     "type": "git",
