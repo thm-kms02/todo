@@ -17,9 +17,11 @@ var saveButton;
 var selectedCategory;
 var descriptionInput;
 var createButton;
+var LoginButton;
 var categoryInp;
 var categoryBtn;
 var openModReg;
+var openModLog;
 $(function () {
     saveButton = $("#saveTask");
     saveButton.on('click', addTask);
@@ -29,6 +31,10 @@ $(function () {
     categoryBtn.on('click', addCategory);
     openModReg = $('#registyMod');
     openModReg.on('click', openModal);
+    openModLog = $('#logine');
+    openModLog.on('click', openLogin);
+    LoginButton = $("#createlogin");
+    LoginButton.on('click', login);
 });
 function addCategory() {
     categoryInp = $("#CategoryInput");
@@ -98,6 +104,26 @@ function create() {
         alert(jqXHR.responseText);
     });
 }
+function login() {
+    var email = $("#email").val().toString().trim();
+    var passwort = $("#password").val().toString().trim();
+    event.preventDefault();
+    $.ajax('http://localhost:8080/login', {
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            email: email,
+            passwort: passwort
+        }),
+    }).then(function () {
+        var editModal = $('#Login');
+        editModal.modal("hide");
+        alert("Willkomen");
+        alert("sie sind erfolgreich eingeloggt");
+    }).catch(function (jqXHR) {
+        alert(jqXHR.responseText);
+    });
+}
 function getTodolist() {
     $.ajax({
         url: 'loadTasks',
@@ -132,4 +158,8 @@ function renderTodolist(todoList) {
 function openModal() {
     var editModal = $('#modalLogin');
     editModal.modal('show');
+}
+function openLogin() {
+    var Modal = $('#Login');
+    Modal.modal('show');
 }

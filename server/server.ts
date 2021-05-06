@@ -107,12 +107,12 @@ app.get('/todoliste', (req: Request, res: Response) => {
     const query: string = 'SELECT * FROM aufgabe;';
     database.query(query, (err, rows: any) => {
         if (err) {
-            //Database failed
+            // Database failed
             res.status(500).send({
                 message: 'Database request failed:' + err
             });
         } else {
-            //create todolist
+            // create todolist
             const todoList: Aufgabe[] = [];
             for (const row of rows) {
                 todoList.push(new Aufgabe(
@@ -162,22 +162,22 @@ app.post('/create', (req: Request, res: Response) => {
     }
 });
 
-app.post('/login', function (req, res) {
+app.post('/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const data = [email, password];
-    if (email === "" ||  password == "") {
+    if (email === "" ||  password === "") {
         res.status(400);
         res.send("Alle Inputfelder müssen ausgefüllt werden");
     }
     else {
         const cQuery = 'SELECT * FROM nutzer WHERE email=? And password=?';
-        database.query(cQuery, data, function (err, results) {
+        database.query(cQuery, data, (err, results) => {
             if (err === null && results.length > 0  ) {
                 res.status(201);
                 res.send(" Nutzer erfolgreich  eingellogt");
             }
-            else if (err.errno == 1062) {
+            else if (err.errno === 1062) {
                 res.status(500);
                 res.send("Nutzer ist nicht vorhanden.");
             }

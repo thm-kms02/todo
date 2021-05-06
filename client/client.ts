@@ -25,9 +25,11 @@ let saveButton: JQuery;
 let selectedCategory: JQuery;
 let descriptionInput: JQuery;
 let createButton:JQuery;
+let LoginButton:JQuery;
 let categoryInp:JQuery;
 let categoryBtn:JQuery;
 let openModReg: JQuery;
+let openModLog: JQuery;
 
 
 $(() => {
@@ -39,6 +41,10 @@ $(() => {
     categoryBtn.on('click', addCategory);
     openModReg = $('#registyMod');
     openModReg.on('click',openModal);
+    openModLog=$('#logine');
+    openModLog.on('click',openLogin);
+    LoginButton=$("#createlogin");
+    LoginButton.on('click',login);
 });
 
 function addCategory() {
@@ -116,6 +122,35 @@ function create(){
     });
 }
 
+
+function login(){
+
+    const email = $("#email").val().toString().trim();
+    const passwort = $("#password").val().toString().trim();
+    event.preventDefault();
+
+    $.ajax('http://localhost:8080/login', {
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+
+            email,
+            passwort
+        }),
+
+    }).then(() => {
+        const editModal: JQuery = $('#Login');
+        editModal.modal("hide");
+        alert("Willkomen");
+        alert("sie sind erfolgreich eingeloggt")
+
+
+    }).catch((jqXHR: JQueryXHR) => {
+        alert(jqXHR.responseText)
+
+    });
+}
+
 function getTodolist() {
     $.ajax({
         url:'loadTasks',
@@ -154,5 +189,10 @@ function renderTodolist(todoList: Aufgabe[]){
 function openModal(){
     const editModal: JQuery = $('#modalLogin');
     editModal.modal('show');
+}
+
+function openLogin(){
+    const Modal = $('#Login');
+    Modal.modal('show');
 }
 
