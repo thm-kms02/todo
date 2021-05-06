@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
+  "type": "module",
   "scripts": {
     "test": "nyc mocha ./test_units/test.ts"
   },
