@@ -1,5 +1,5 @@
 const express = require('express');
-import mysql = require('mysql');
+const mysql = require('mysql');
 import {Connection, MysqlError} from "mysql";
 import {Request, Response} from 'express';
 import {Aufgabe} from '../aufgabe';
