@@ -2,9 +2,9 @@
   "name": "todo",
   "version": "1.0.0",
   "description": "",
-  "main": "User.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "nyc mocha ./test_units"
+    "test": "nyc mocha ./test_units/test.ts"
   },
   "repository": {
     "type": "git",

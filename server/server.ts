@@ -86,8 +86,8 @@ app.post('/addTask', (req: Request, res: Response) => {
     })
 });
 
-app.get('/loadTasks', (req: Request, res: Response) => {
-    const data: [number] = [loggeduser.id];
+app.get('/loadtasks', (req: Request, res: Response) => {
+    const data: [number] = [1];
     const query: string = 'SELECT * FROM aufgabe WHERE benutzer = ?';
     database.query(query, data, (err: MysqlError, rows: any) => {
         if (err) {

@@ -7,6 +7,7 @@ const host = require('../server/server');
 
 chain.should();
 chain.use(chaiHttps);
+
 describe('Post /create',()=>{
     it('should create a new Account',  (done)=> {
         const account = {
@@ -39,6 +40,22 @@ describe('Post /create',()=>{
             });
     });
 });
+
+describe('Get/loadTasks)',()=>{
+    it('should load tasks of user with id 1',(done) =>{
+        const userid= {
+            id:"1"
+        };
+        chain.request('http://localhost:8080')
+            .get('/loadtasks')
+            .send(userid)
+            .end((err,response)=>{
+                response.should.have.status(200);
+                done();
+            });
+    });
+});
+
 
 describe('Post /login',()=>{
     it('should login a user',  (done)=> {
@@ -96,6 +113,27 @@ describe('Post /addCategory',()=>{
     });
 });
 
+describe('Get/todoliste)',()=>{
+    it('should load and create the task on mainpage if logged in',(done) =>{
+        const Todoliste= {
+            id:"",
+            user:"",
+            ueberschrift:"",
+            beschreibung:"",
+            kategorie:"",
+            prio:"",
+        };
+        chain.request('http://localhost:8080')
+            .get('/todoliste')
+            .send(Todoliste)
+            .end((err,response)=>{
+                response.should.have.status(200);
+                done();
+            });
+    });
+});
+
+
 describe('Post /addTask',()=>{
     it('should create a new Task',  (done)=> {
         const Task = {
@@ -127,34 +165,3 @@ describe('Post /addTask',()=>{
     });
 });
 
-
-describe('GET /loadTasks',()=>{
-    it('should give all Tasks of current user with ID',  (done)=> {
-        chain.request('http://localhost:8080')
-            .get('/loadTasks')
-            .end((err,response)=>{
-                response.should.have.status(200);
-                done();
-            });
-    });
-});
-
-describe('Get/todoliste)',()=>{
-    it('should load and create the task on mainpage if logged in',(done) =>{
-        const Todoliste= {
-            id:"",
-            user:"",
-            ueberschrift:"",
-            beschreibung:"",
-            kategorie:"",
-            prio:"",
-        };
-        chain.request('http://localhost:8080')
-            .get('/todoliste')
-            .send(Todoliste)
-            .end((err,response)=>{
-                response.should.have.status(200);
-                done();
-            });
-    });
-});
