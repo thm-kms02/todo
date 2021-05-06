@@ -5,7 +5,7 @@ import {Request, Response} from 'express';
 import {Aufgabe} from '../aufgabe';
 import {User} from "../User";
 
-module.exports = "http://localhost:8080";
+
 const app = express();
 const database: Connection = mysql.createConnection({
     host: 'localhost',
@@ -188,3 +188,4 @@ app.post('/login', (req, res) => {
         });
     }
 });
+module.exports = app;
