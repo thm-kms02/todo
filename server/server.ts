@@ -62,12 +62,12 @@ app.post('/addCategory', (req: Request, res: Response) => {
 
 app.post('/addTask', (req: Request, res: Response) => {
     console.log("Hallo: " + req.body.ueberschrift);
-    const task: Aufgabe = new Aufgabe(req.body.ueberschrift, req.body.beschreibung, req.body.category);
-    if(task.ueberschrift.length<1||task.beschreibung.length<1) {
+    if(req.body.ueberschrift.length<1||req.body.beschreibung.length<1) {
         res.status(400).send({
             message:"Bad Input"
         });
-    }
+    } else {
+        let task: Aufgabe = new Aufgabe(1,req.body.ueberschrift.toString(),req.body.beschreibung.toString())
     const data: [number, string, string, number, number] = task.toArray();
     const query: string = 'INSERT INTO aufgabe (benutzer, ueberschrift, beschreibung, prio, kategorie) VALUES (1, ?, ?, 1, ?);';
     database.query(query, data, (err: MysqlError) => {
@@ -84,6 +84,7 @@ app.post('/addTask', (req: Request, res: Response) => {
 
         }
     })
+    }
 });
 
 app.get('/loadtasks', (req: Request, res: Response) => {

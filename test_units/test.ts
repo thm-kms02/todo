@@ -25,6 +25,7 @@ describe('Post /create',()=>{
                 done();
             });
     });
+
     it('Register without email should fail',  (done)=> {
         const account = {
             vorname:"Dieter",
@@ -39,9 +40,7 @@ describe('Post /create',()=>{
                 done();
             });
     });
-});
 
-describe('Get/loadTasks)',()=>{
     it('should load tasks of user with id 1',(done) =>{
         const userid= {
             id:"1"
@@ -54,10 +53,7 @@ describe('Get/loadTasks)',()=>{
                 done();
             });
     });
-});
 
-
-describe('Post /login',()=>{
     it('should login a user',  (done)=> {
         const login = {
             email:"dieter@web.de",
@@ -71,6 +67,7 @@ describe('Post /login',()=>{
                 done();
             });
     });
+
     it('Login without password should fail',  (done)=> {
         const login = {
             email: "dieter@web.de"
@@ -83,10 +80,7 @@ describe('Post /login',()=>{
                 done();
             });
     });
-});
 
-
-describe('Post /addCategory',()=>{
     it('should create a new Category',  (done)=> {
         const Category = {
             newCat:"test"
@@ -99,6 +93,7 @@ describe('Post /addCategory',()=>{
                 done();
             });
     });
+
     it('should create a new Category',  (done)=> {
         const Category = {
             newCat:""
@@ -111,9 +106,7 @@ describe('Post /addCategory',()=>{
                 done();
             });
     });
-});
 
-describe('Get/todoliste)',()=>{
     it('should load and create the task on mainpage if logged in',(done) =>{
         const Todoliste= {
             id:"",
@@ -131,10 +124,7 @@ describe('Get/todoliste)',()=>{
                 done();
             });
     });
-});
 
-
-describe('Post /addTask',()=>{
     it('should create a new Task',  (done)=> {
         const Task = {
             ueberschrift:"test",
@@ -149,6 +139,7 @@ describe('Post /addTask',()=>{
                 done();
             });
     });
+
     it('should not create a new Task',  (done)=> {
         const Task = {
             ueberschrift:"",
@@ -163,5 +154,29 @@ describe('Post /addTask',()=>{
                 done();
             });
     });
+});
+
+describe('Get/loadTasks)',()=>{
+
+});
+
+
+describe('Post /login',()=>{
+
+
+});
+
+
+describe('Post /addCategory',()=>{
+
+});
+
+describe('Get/todoliste)',()=>{
+
+});
+
+
+describe('Post /addTask',()=>{
+
 });
 
