@@ -126,7 +126,7 @@ function login() {
 }
 function getTodolist() {
     $.ajax({
-        url: 'loadTasks',
+        url: 'loadtasks',
         type: 'get',
         dataType: 'json',
         success: function (response) {
