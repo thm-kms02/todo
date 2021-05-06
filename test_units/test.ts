@@ -72,12 +72,12 @@ describe('Post /login',()=>{
             });
     });
     it('Login without password should fail',  (done)=> {
-        const account = {
+        const login = {
             email: "dieter@web.de"
         };
         chain.request('http://localhost:8080')
             .post('/login')
-            .send(account)
+            .send(login)
             .end((err,response)=>{
                 response.should.have.status(500);
                 done();
