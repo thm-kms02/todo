@@ -1,5 +1,5 @@
-const express = require('express');
-const mysql = require('mysql');
+import express = require('express');
+import mysql = require('mysql');
 import {Connection, MysqlError} from "mysql";
 import {Request, Response} from 'express';
 import {Aufgabe} from '../aufgabe';
@@ -188,4 +188,3 @@ app.post('/login', (req, res) => {
         });
     }
 });
-module.exports = app;
