@@ -144,7 +144,8 @@ describe('Post /create', function () {
         });
     });
 });
-describe('Get/loadTasks)', function () {
+
+/*describe('Get/loadTasks)', function () {
 });
 describe('Post /login', function () {
 });
@@ -153,4 +154,4 @@ describe('Post /addCategory', function () {
 describe('Get/todoliste)', function () {
 });
 describe('Post /addTask', function () {
-});
+});*/

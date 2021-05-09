@@ -9,23 +9,24 @@ chain.should();
 chain.use(chaiHttps);
 
 
-describe('Post /create',()=>{
-    it('should create a new Account',  (done)=> {
+describe('Post /create', async ()=> {
+    it('should create a new Account', (done) => {
         const account = {
-            email:"dieter@web.de",
-            vorname:"Dieter",
+            email: "dieter@web.de",
+            vorname: "Dieter",
             nachname: "Mainder",
             passwort: "passwefrg"
         };
         chain.request('http://localhost:8080')
             .post('/create')
             .send(account)
-            .end((err,response)=>{
-                console.log(response);
+            .end((err, response) => {
+                console.log(response.status);
                 response.should.have.status(201);
                 done();
             });
     });
+
 
     it('Register without email should fail',  (done)=> {
         const account = {
@@ -153,10 +154,12 @@ describe('Post /create',()=>{
             .end((err,response)=>{
                 response.should.have.status(400);
                 done();
+
             });
     });
 });
 
+/*
 describe('Get/loadTasks)',()=>{
 
 });
@@ -180,4 +183,4 @@ describe('Get/todoliste)',()=>{
 describe('Post /addTask',()=>{
 
 });
-
+*/
