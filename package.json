@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "type": "module",
   "scripts": {
-    "test": "nyc mocha ./test_units/test.ts"
+    "test": "nyc mocha ./test_units/test.js"
   },
   "repository": {
     "type": "git",
