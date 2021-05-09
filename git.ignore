@@ -1,4 +1,4 @@
 /.idea
 /node_modules
 /client/client.js
-/server/server.mjs
+/server/server.js
