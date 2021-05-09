@@ -13,6 +13,7 @@ const database: Connection = mysql.createConnection({
     database: 'ksm02'
 });
 
+
 const loggeduser: User = new User("jkj", "ghd", 1);
 const basedir: string = __dirname + '/../'
 app.use("/", express.static(basedir + '/client/'));
