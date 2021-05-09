@@ -1,35 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Erstellungszeit: 25. Apr 2021 um 20:15
--- Server-Version: 10.4.18-MariaDB
--- PHP-Version: 7.3.27
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
---
 # Create Testuser
 CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON *.* TO 'dev'@'localhost';
 # Create DB
 CREATE DATABASE IF NOT EXISTS `demo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `ksm02`;
--- --------------------------------------------------------
 
---
--- Tabellenstruktur für Tabelle `aufgabe`
---
 
 
 CREATE TABLE `aufgabe` (
