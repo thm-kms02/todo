@@ -18,13 +18,6 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `ksm02`
---
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `aufgabe`
 --
 # Create Testuser
 CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';
@@ -32,6 +25,12 @@ GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON *.* TO 'dev'@'localhost';
 # Create DB
 CREATE DATABASE IF NOT EXISTS `demo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `ksm02`;
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `aufgabe`
+--
+
 
 CREATE TABLE `aufgabe` (
   `id` int(11) NOT NULL,
