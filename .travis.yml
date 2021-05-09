@@ -12,3 +12,5 @@ addons:
     packages:
       - "mysql-server"
       - "mysql-client"
+before_install:
+  - mysql -u root --password="" < server/ksm02.sql
