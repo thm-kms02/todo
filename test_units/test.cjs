@@ -115,7 +115,7 @@ describe('Post /create', function () {
             done();
         });
     });
-    it('should create a new Task', function (done) {
+  /*  it('should create a new Task', function (done) {
         var Task = {
             ueberschrift: "test",
             beschreibung: "t",
@@ -128,7 +128,7 @@ describe('Post /create', function () {
             response.should.have.status(200);
             done();
         });
-    });
+    });*/
     it('should not create a new Task', function (done) {
         var Task = {
             ueberschrift: "",
