@@ -1,5 +1,4 @@
-// unused Class
-/*class Aufgabe {
+class Aufgabe {
     id: number;
     user: number;
     ueberschrift: string;
@@ -21,7 +20,7 @@
         return [this.user, this.ueberschrift, this.beschreibung, this.kategorie, this.prio];
     }
 }
-*/
+
 let taskText: JQuery;
 let saveButton: JQuery;
 let selectedCategory: JQuery;

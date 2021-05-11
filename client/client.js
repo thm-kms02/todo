@@ -1,14 +1,5 @@
-// unused Class
-/*class Aufgabe {
-    id: number;
-    user: number;
-    ueberschrift: string;
-    beschreibung: string;
-    kategorie: number;
-    prio: number;
-
-
-    constructor(user: number, ueberschrift: string, beschreibung: string, kategorie?: number, prio?: number, id?: number) {
+var Aufgabe = /** @class */ (function () {
+    function Aufgabe(user, ueberschrift, beschreibung, kategorie, prio, id) {
         this.user = user;
         this.ueberschrift = ueberschrift;
         this.beschreibung = beschreibung;
@@ -16,12 +7,11 @@
         this.prio = 1;
         this.id = id;
     }
-
-    public toArray(): [number, string, string, number, number] {
+    Aufgabe.prototype.toArray = function () {
         return [this.user, this.ueberschrift, this.beschreibung, this.kategorie, this.prio];
-    }
-}
-*/
+    };
+    return Aufgabe;
+}());
 var taskText;
 var saveButton;
 var selectedCategory;
