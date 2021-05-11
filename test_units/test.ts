@@ -7,8 +7,6 @@ const host = require('../server/server');
 
 chain.should();
 chain.use(chaiHttps);
-
-
 describe('Post /create', async ()=> {
     it('should create a new Account', (done) => {
         const account = {

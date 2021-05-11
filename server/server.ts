@@ -12,8 +12,6 @@ const database: Connection = mysql.createConnection({
     password: '',
     database: 'ksm02'
 });
-
-
 const loggeduser: User = new User("jkj", "ghd", 1);
 const basedir: string = __dirname + '/../'
 app.use("/", express.static(basedir + '/client/'));
@@ -37,9 +35,9 @@ app.post('/addCategory', (req: Request, res: Response) => {
     let cat: string = req.body.newCat;
     cat = cat.trim();
     console.log("Test: " + cat);
-    if(cat === "") {
+    if (cat === "") {
         res.status(400).send({
-            message:"Bad Input"
+            message: "Bad Input"
         });
     } else {
         const data: [number, string] = [loggeduser.id, cat];
@@ -62,28 +60,28 @@ app.post('/addCategory', (req: Request, res: Response) => {
 
 app.post('/addTask', (req: Request, res: Response) => {
     console.log("Hallo: " + req.body.ueberschrift);
-    if(req.body.ueberschrift.length<1||req.body.beschreibung.length<1) {
+    if (req.body.ueberschrift.length < 1 || req.body.beschreibung.length < 1) {
         res.status(400).send({
-            message:"Bad Input"
+            message: "Bad Input"
         });
     } else {
-        let task: Aufgabe = new Aufgabe(1,req.body.ueberschrift.toString(),req.body.beschreibung.toString())
-    const data: [number, string, string, number, number] = task.toArray();
-    const query: string = 'INSERT INTO aufgabe (benutzer, ueberschrift, beschreibung, prio, kategorie) VALUES (1, ?, ?, 1, ?);';
-    database.query(query, data, (err: MysqlError) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send({
-                message: 'Database request failed: ' + err
-            });
-        } else {
-            console.log("Task added");
-            res.status(200).send({
-                message: 'Aufgabe erfolgreich angelegt'
-            });
+        const task: Aufgabe = new Aufgabe(1, req.body.ueberschrift.toString(), req.body.beschreibung.toString())
+        const data: [number, string, string, number, number] = task.toArray();
+        const query: string = 'INSERT INTO aufgabe (benutzer, ueberschrift, beschreibung, prio, kategorie) VALUES (1, ?, ?, 1, ?);';
+        database.query(query, data, (err: MysqlError) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send({
+                    message: 'Database request failed: ' + err
+                });
+            } else {
+                console.log("Task added");
+                res.status(200).send({
+                    message: 'Aufgabe erfolgreich angelegt'
+                });
 
-        }
-    })
+            }
+        })
     }
 });
 
@@ -103,7 +101,6 @@ app.get('/loadtasks', (req: Request, res: Response) => {
     })
 });
 
-
 app.get('/todoliste', (req: Request, res: Response) => {
     const query: string = 'SELECT * FROM aufgabe;';
     database.query(query, (err, rows: any) => {
@@ -114,9 +111,9 @@ app.get('/todoliste', (req: Request, res: Response) => {
             });
         } else {
             // create todolist
-            const todoList: Aufgabe[] = [];
+            const todolist: Aufgabe[] = [];
             for (const row of rows) {
-                todoList.push(new Aufgabe(
+                todolist.push(new Aufgabe(
                     row.id,
                     row.user,
                     row.ueberschrift,
@@ -127,7 +124,7 @@ app.get('/todoliste', (req: Request, res: Response) => {
 
             }
             res.status(200).send({
-                todoList: todoList,
+                todoList: todolist,
                 message: 'Successfully request Todoliste'
             })
 
@@ -135,7 +132,6 @@ app.get('/todoliste', (req: Request, res: Response) => {
     })
 
 });
-
 
 app.post('/create', (req: Request, res: Response) => {
     const email: string = req.body.email;
@@ -167,23 +163,20 @@ app.post('/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const data = [email, password];
-    if (email === "" ||  password === "") {
+    if (email === "" || password === "") {
         res.status(400);
         res.send("Alle Inputfelder müssen ausgefüllt werden");
-    }
-    else {
+    } else {
         const cQuery = 'SELECT * FROM nutzer WHERE email=? And password=?';
         database.query(cQuery, data, (err, results) => {
-            if (err === null && results.length > 0  ) {
+            if (err === null && results.length > 0) {
                 res.status(201);
                 res.send(" Nutzer erfolgreich  eingellogt");
 
-            }
-            else if (err.errno === 1062) {
+            } else if (err.errno === 1062) {
                 res.status(500);
                 res.send("Nutzer ist nicht vorhanden.");
-            }
-            else {
+            } else {
                 res.sendStatus(500);
             }
         });

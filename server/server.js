@@ -109,13 +109,13 @@ app.get('/todoliste', function (req, res) {
         }
         else {
             // create todolist
-            var todoList = [];
+            var todolist = [];
             for (var _i = 0, rows_1 = rows; _i < rows_1.length; _i++) {
                 var row = rows_1[_i];
-                todoList.push(new aufgabe_1.Aufgabe(row.id, row.user, row.ueberschrift, row.beschreibung, row.kategorie, row.prio));
+                todolist.push(new aufgabe_1.Aufgabe(row.id, row.user, row.ueberschrift, row.beschreibung, row.kategorie, row.prio));
             }
             res.status(200).send({
-                todoList: todoList,
+                todoList: todolist,
                 message: 'Successfully request Todoliste'
             });
         }

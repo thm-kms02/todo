@@ -1,4 +1,5 @@
-class Aufgabe {
+// unused Class
+/*class Aufgabe {
     id: number;
     user: number;
     ueberschrift: string;
@@ -15,19 +16,20 @@ class Aufgabe {
         this.prio = 1;
         this.id = id;
     }
-    public toArray():[number, string, string, number, number] {
-        return [this.user, this.ueberschrift, this.beschreibung,this.kategorie, this.prio];
+
+    public toArray(): [number, string, string, number, number] {
+        return [this.user, this.ueberschrift, this.beschreibung, this.kategorie, this.prio];
     }
 }
-
+*/
 let taskText: JQuery;
 let saveButton: JQuery;
 let selectedCategory: JQuery;
 let descriptionInput: JQuery;
-let createButton:JQuery;
-let LoginButton:JQuery;
-let categoryInp:JQuery;
-let categoryBtn:JQuery;
+let createButton: JQuery;
+let LoginButton: JQuery;
+let categoryInp: JQuery;
+let categoryBtn: JQuery;
 let openModReg: JQuery;
 let openModLog: JQuery;
 
@@ -35,16 +37,16 @@ let openModLog: JQuery;
 $(() => {
     saveButton = $("#saveTask");
     saveButton.on('click', addTask);
-    createButton=$("#createButton");
-    createButton.on('click',create);
+    createButton = $("#createButton");
+    createButton.on('click', create);
     categoryBtn = $("#saveCategory");
     categoryBtn.on('click', addCategory);
     openModReg = $('#registyMod');
-    openModReg.on('click',openModal);
-    openModLog=$('#logine');
-    openModLog.on('click',openLogin);
-    LoginButton=$("#createlogin");
-    LoginButton.on('click',login);
+    openModReg.on('click', openModal);
+    openModLog = $('#logine');
+    openModLog.on('click', openLogin);
+    LoginButton = $("#createlogin");
+    LoginButton.on('click', login);
 });
 
 function addCategory() {
@@ -55,7 +57,7 @@ function addCategory() {
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify({
-           newCat
+            newCat
         }),
         contentType: 'application/json',
         success: result => {
@@ -93,13 +95,13 @@ function addTask() {
         }
     })
 }
-function create(){
-    const vorname:string = $("#vorname").val().toString().trim();
-    const nachname:string = $("#nachname").val().toString().trim();
+
+function create(event) {
+    const vorname: string = $("#vorname").val().toString().trim();
+    const nachname: string = $("#nachname").val().toString().trim();
     const email = $("#inputEmail4").val().toString().trim();
     const passwort = $("#inputPassword4").val().toString().trim();
     event.preventDefault();
-
     $.ajax('http://localhost:8080/create', {
         type: 'POST',
         contentType: 'application/json',
@@ -109,68 +111,57 @@ function create(){
             email,
             passwort
         }),
-
     }).then(() => {
         const editModal: JQuery = $('#modalLogin');
         editModal.modal("hide");
         alert("Willkomen, " + vorname);
-
-
     }).catch((jqXHR: JQueryXHR) => {
         alert(jqXHR.responseText)
-
     });
 }
 
 
-function login(){
-
+function login(event) {
     const email = $("#email").val().toString().trim();
     const passwort = $("#password").val().toString().trim();
     event.preventDefault();
-
     $.ajax('http://localhost:8080/login', {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-
             email,
             passwort
         }),
-
     }).then(() => {
         const editModal: JQuery = $('#Login');
         editModal.modal("hide");
         alert("Willkomen");
         alert("sie sind erfolgreich eingeloggt")
-
-
     }).catch((jqXHR: JQueryXHR) => {
         alert(jqXHR.responseText)
-
     });
 }
 
-function getTodolist() {
+// unused Function
+/*function getTodolist() {
     $.ajax({
-        url:'loadtasks',
-        type:'get',
-        dataType:'json',
-        success:(response)=>{
+        url: 'loadtasks',
+        type: 'get',
+        dataType: 'json',
+        success: (response) => {
             renderTodolist(response.todoList);
-        },error:()=>{
+        }, error: () => {
             console.log("something went wrong")
         },
-
     });
 }
 
-function renderTodolist(todoList: Aufgabe[]){
-    const todobody : JQuery=$('#todobody');
-
+// unused Function
+function renderTodolist(todoList: Aufgabe[]) {
+    const todobody: JQuery = $('#todobody');
     todobody.empty();
-    for (const aufgabe of todoList){
-        const todoentry: JQuery =$(
+    for (const aufgabe of todoList) {
+        const todoentry: JQuery = $(
             ' <div class="col-md-6" id="${aufgabe.id}">' +
             '            <div class="card1 mt-3 p-3 g-2">' +
             '                <div class="d-flex align-items-center">' +
@@ -185,13 +176,14 @@ function renderTodolist(todoList: Aufgabe[]){
         todobody.append(todoentry);
     }
 }
+*/
 
-function openModal(){
+function openModal() {
     const editModal: JQuery = $('#modalLogin');
     editModal.modal('show');
 }
 
-function openLogin(){
+function openLogin() {
     const Modal = $('#Login');
     Modal.modal('show');
 }

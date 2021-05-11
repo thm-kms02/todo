@@ -1,5 +1,14 @@
-var Aufgabe = /** @class */ (function () {
-    function Aufgabe(user, ueberschrift, beschreibung, kategorie, prio, id) {
+// unused Class
+/*class Aufgabe {
+    id: number;
+    user: number;
+    ueberschrift: string;
+    beschreibung: string;
+    kategorie: number;
+    prio: number;
+
+
+    constructor(user: number, ueberschrift: string, beschreibung: string, kategorie?: number, prio?: number, id?: number) {
         this.user = user;
         this.ueberschrift = ueberschrift;
         this.beschreibung = beschreibung;
@@ -7,11 +16,12 @@ var Aufgabe = /** @class */ (function () {
         this.prio = 1;
         this.id = id;
     }
-    Aufgabe.prototype.toArray = function () {
+
+    public toArray(): [number, string, string, number, number] {
         return [this.user, this.ueberschrift, this.beschreibung, this.kategorie, this.prio];
-    };
-    return Aufgabe;
-}());
+    }
+}
+*/
 var taskText;
 var saveButton;
 var selectedCategory;
@@ -81,7 +91,7 @@ function addTask() {
         }
     });
 }
-function create() {
+function create(event) {
     var vorname = $("#vorname").val().toString().trim();
     var nachname = $("#nachname").val().toString().trim();
     var email = $("#inputEmail4").val().toString().trim();
@@ -104,7 +114,7 @@ function create() {
         alert(jqXHR.responseText);
     });
 }
-function login() {
+function login(event) {
     var email = $("#email").val().toString().trim();
     var passwort = $("#password").val().toString().trim();
     event.preventDefault();
@@ -124,24 +134,27 @@ function login() {
         alert(jqXHR.responseText);
     });
 }
-function getTodolist() {
+// unused Function
+/*function getTodolist() {
     $.ajax({
         url: 'loadtasks',
         type: 'get',
         dataType: 'json',
-        success: function (response) {
+        success: (response) => {
             renderTodolist(response.todoList);
-        }, error: function () {
-            console.log("something went wrong");
+        }, error: () => {
+            console.log("something went wrong")
         },
     });
 }
-function renderTodolist(todoList) {
-    var todobody = $('#todobody');
+
+// unused Function
+function renderTodolist(todoList: Aufgabe[]) {
+    const todobody: JQuery = $('#todobody');
     todobody.empty();
-    for (var _i = 0, todoList_1 = todoList; _i < todoList_1.length; _i++) {
-        var aufgabe = todoList_1[_i];
-        var todoentry = $(' <div class="col-md-6" id="${aufgabe.id}">' +
+    for (const aufgabe of todoList) {
+        const todoentry: JQuery = $(
+            ' <div class="col-md-6" id="${aufgabe.id}">' +
             '            <div class="card1 mt-3 p-3 g-2">' +
             '                <div class="d-flex align-items-center">' +
             ' <small class="first">${aufgabe.kategorie}</small> </div>' +
@@ -155,6 +168,7 @@ function renderTodolist(todoList) {
         todobody.append(todoentry);
     }
 }
+*/
 function openModal() {
     var editModal = $('#modalLogin');
     editModal.modal('show');
