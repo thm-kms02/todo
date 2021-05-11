@@ -1,4 +1,4 @@
-export class Aufgabe {
+ class Aufgabe {
     id: number;
     user: number;
     ueberschrift: string;
