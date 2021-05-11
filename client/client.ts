@@ -6,6 +6,7 @@ class Aufgabe {
   kategorie: number;
   prio: number;
 
+
   constructor(
     user: number,
     ueberschrift: string,
