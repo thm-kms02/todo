@@ -11,7 +11,13 @@ var Aufgabe = /** @class */ (function () {
         this.id = id;
     }
     Aufgabe.prototype.toArray = function () {
-        return [this.user, this.ueberschrift, this.beschreibung, this.kategorie, this.prio];
+        return [
+            this.user,
+            this.ueberschrift,
+            this.beschreibung,
+            this.kategorie,
+            this.prio,
+        ];
     };
     return Aufgabe;
 }());
